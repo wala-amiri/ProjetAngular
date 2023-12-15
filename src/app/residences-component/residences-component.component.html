@@ -1,0 +1,40 @@
+<h3>Liste des residences</h3>
+<ul class="list-group"*ngFor="let r of listResidences">
+
+<li class="list-group-item">{{r.id}} {{r.name}} {{r.address}}
+<button type="button" class="btn btn-primary" (click)="checkAppart(r.id)">Show appartement</button>
+</li>
+</ul>
+<div *ngIf="showAppartmentsClicked">
+
+<div *ngIf="list && list.length !== 0; else noApartments">
+    <input type="text" id="surfaceSearch" [(ngModel)]="surface" />
+    <button (click)="filterApartments()" class="btn btn-info">Search</button>
+    <table class="table" border="2">
+    <tr>
+        <th>appartNum</th>
+        <th>floorNum</th>
+        <th>surface</th>
+        <th>terrace</th>
+    </tr>
+    <tr *ngFor="let a of listApartments">
+        <ng-container *ngIf="a.surface==surface||surface==null">
+
+        <td>{{a.appartNum}}</td>
+        <td>{{a.floorNum}}</td>
+        <td>{{a.surface}}</td>
+        <td>{{a.terrace}}</td>
+        <td><button class="btn btn-info" (click)="likeAppart(a.id)">Like</button></td>
+    </ng-container>
+
+    </table>
+
+</div>
+
+<ng-template #noApartments>
+ <p>No Apartment found</p>
+  </ng-template>
+</div>
+<div>
+*
+  </div>
